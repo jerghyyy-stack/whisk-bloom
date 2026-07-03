@@ -1,6 +1,19 @@
 const deliveryFee = 5;
 const MENU_IMAGE = './menu-preview.png';
 
+const cropStyles = `
+.hero-card{overflow:hidden;}
+.hero-card img.hero-menu-image{width:236%;max-width:none;height:auto;object-fit:initial;object-position:initial;transform:translate(0,0);aspect-ratio:auto;}
+.photo-crop{position:relative;overflow:hidden;width:100%;aspect-ratio:1.48/1;background:#f2e5d2;}
+.photo-crop img{position:absolute;display:block;max-width:none;height:auto;object-fit:initial;width:100%;}
+.crop-durian img{width:327%;left:-138%;top:0;}
+.crop-matcha img{width:369%;left:-269%;top:0;}
+.crop-seasalt img{width:366%;left:0;top:-136%;}
+.crop-oreo img{width:266%;left:-73%;top:-99%;}
+.crop-fruittea img{width:286%;left:-186%;top:-106%;}
+@media(max-width:980px){.hero-card img.hero-menu-image{width:255%;}.photo-crop{aspect-ratio:1.48/1;}}
+`;
+
 const products = [
   {
     id: 'durian',
@@ -25,7 +38,7 @@ const products = [
     name: 'Sea Salt Cheese Pie',
     price: 9.90,
     tag: 'Classic',
-    desc: 'Clean, creamy and lightly savoury with a more subtle cheese pull.',
+    desc: 'Creamy white cheese filling with a light savoury sea-salt finish.',
     img: MENU_IMAGE,
     crop: 'crop-seasalt'
   },
@@ -54,6 +67,12 @@ let cart = JSON.parse(localStorage.getItem('wb-cart') || '{}');
 const money = n => `$${n.toFixed(2)}`;
 const count = () => Object.values(cart).reduce((a,b)=>a+b,0);
 const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.price, 0);
+
+function injectCropStyles(){
+  const style = document.createElement('style');
+  style.textContent = cropStyles;
+  document.head.appendChild(style);
+}
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
@@ -104,6 +123,7 @@ function submitOrder(e){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  injectCropStyles();
   const hero = document.getElementById('heroImage');
   hero.src = MENU_IMAGE;
   hero.classList.add('hero-menu-image');
