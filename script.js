@@ -1,0 +1,1 @@
+$(cat /mnt/data/whisk_bloom_live/script.js)
