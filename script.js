@@ -1,46 +1,21 @@
 const deliveryFee = 5;
 
 const products = [
-  {
-    id: 'durian',
-    name: 'Durian Cheese Pie',
-    price: 11.90,
-    tag: 'Best Seller',
-    desc: 'Creamy durian filling with a soft cheese pull and thin handmade crust.',
-    img: './durian.jpg'
-  },
-  {
-    id: 'matcha',
-    name: 'Matcha Cheese Pie',
-    price: 13.90,
-    tag: 'Premium Matcha',
-    desc: 'Earthy matcha filling tucked inside the same thin crust with rich cream cheese.',
-    img: './matcha.jpg'
-  },
-  {
-    id: 'seasalt',
-    name: 'Sea Salt Cheese Pie',
-    price: 9.90,
-    tag: 'Classic',
-    desc: 'Creamy white cheese filling with a light savoury sea-salt finish.',
-    img: './seasalt.jpg'
-  },
-  {
-    id: 'oreo',
-    name: 'Oreo Cheesecake',
-    price: 7.90,
-    tag: 'Per Slice',
-    desc: 'No-bake Oreo cheesecake slice with Oreo crumbs and a thick cookie base.',
-    img: './oreo.jpg'
-  },
-  {
-    id: 'fruittea',
-    name: 'Signature Fruit Tea',
-    price: 5.90,
-    tag: 'Refreshing',
-    desc: 'A bright, refreshing tea pairing for the cheese pies and cheesecake.',
-    img: './fruittea.jpg'
-  }
+  { id: 'oreo-cheesecake', category: 'Cheesecakes', name: 'Oreo Cheesecake', price: 7.90, tag: 'Best Seller', desc: 'Cookies and cream cheesecake slice with Oreo crumble and a rich cookie base.', img: './01_oreo_cheesecake.jpg' },
+  { id: 'matcha-cheesecake', category: 'Cheesecakes', name: 'Matcha Cheesecake', price: 7.90, tag: 'Premium Matcha', desc: 'Smooth matcha cheesecake with a soft earthy finish and light biscuit base.', img: './02_matcha_cheesecake.jpg' },
+  { id: 'basque-cheesecake', category: 'Cheesecakes', name: 'Basque Cheesecake', price: 7.90, tag: 'Classic', desc: 'Creamy burnt Basque cheesecake with a caramelised top.', img: './03_basque_cheesecake.jpg' },
+
+  { id: 'oreo-dessert-cup', category: 'Dessert Cups', name: 'Oreo Dessert Cup', price: 6.50, tag: 'Popular', desc: 'Layered Oreo cream dessert cup with cookie crumble.', img: './04_oreo_dessert_cup.jpg' },
+  { id: 'tiramisu-dessert-cup', category: 'Dessert Cups', name: 'Tiramisu Dessert Cup', price: 6.50, tag: 'Coffee Cream', desc: 'Creamy tiramisu-inspired dessert cup with cocoa and biscuit layers.', img: './05_tiramisu_dessert_cup.jpg' },
+  { id: 'mango-dessert-cup', category: 'Dessert Cups', name: 'Mango Dessert Cup', price: 6.50, tag: 'Fruity', desc: 'Bright mango dessert cup with creamy layers and mango topping.', img: './06_mango_dessert_cup.jpg' },
+  { id: 'strawberry-dessert-cup', category: 'Dessert Cups', name: 'Strawberry Dessert Cup', price: 6.50, tag: 'Fruity', desc: 'Strawberry dessert cup with soft cream and berry topping.', img: './07_strawberry_dessert_cup.jpg' },
+
+  { id: 'signature-jasmine-fruit-tea', category: 'Drinks', name: 'Signature Jasmine Fruit Tea', price: 5.50, tag: 'Signature', desc: 'Refreshing jasmine fruit tea with a bright tropical finish.', img: './08_signature_jasmine_fruit_tea.jpg' },
+  { id: 'strawberry-jasmine-tea', category: 'Drinks', name: 'Strawberry Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Strawberry jasmine tea with fruity sweetness and floral tea notes.', img: './09_strawberry_jasmine_tea.jpg' },
+  { id: 'peach-jasmine-tea', category: 'Drinks', name: 'Peach Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Peach jasmine tea with a light, sweet and refreshing profile.', img: './10_peach_jasmine_tea.jpg' },
+  { id: 'yuzu-jasmine-tea', category: 'Drinks', name: 'Yuzu Jasmine Tea', price: 5.80, tag: 'Citrus', desc: 'Yuzu jasmine tea with a clean citrus finish.', img: './11_yuzu_jasmine_tea.jpg' },
+  { id: 'matcha-latte', category: 'Drinks', name: 'Matcha Latte', price: 5.80, tag: 'Latte', desc: 'Smooth matcha latte with a creamy finish.', img: './12_matcha_latte.jpg' },
+  { id: 'strawberry-matcha-latte', category: 'Drinks', name: 'Strawberry Matcha Latte', price: 6.20, tag: 'Latte', desc: 'Layered strawberry matcha latte with a creamy fruit base.', img: './13_strawberry_matcha_latte.jpg' }
 ];
 
 let cart = JSON.parse(localStorage.getItem('wb-cart') || '{}');
@@ -51,16 +26,24 @@ const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.pric
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  grid.innerHTML = products.map(p => `
-    <article class="product-card">
-      <img src="${p.img}" alt="${p.name}" loading="lazy" />
-      <div class="product-body">
-        <span class="tag">${p.tag}</span>
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
-        <div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add to Cart</button></div>
+  const groups = ['Cheesecakes', 'Dessert Cups', 'Drinks'];
+  grid.innerHTML = groups.map(group => `
+    <div class="menu-category">
+      <h3>${group}</h3>
+      <div class="category-grid">
+        ${products.filter(p => p.category === group).map(p => `
+          <article class="product-card">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" />
+            <div class="product-body">
+              <span class="tag">${p.tag}</span>
+              <h3>${p.name}</h3>
+              <p>${p.desc}</p>
+              <div class="price-row"><span class="price">${money(p.price)}</span><button class="add-btn" data-add="${p.id}">Add to Cart</button></div>
+            </div>
+          </article>
+        `).join('')}
       </div>
-    </article>
+    </div>
   `).join('');
   document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => add(btn.dataset.add)));
 }
@@ -93,13 +76,13 @@ function submitOrder(e){
   if(count() === 0){ alert('Please add at least one item to cart first.'); return; }
   const data = new FormData(e.currentTarget);
   const items = products.filter(p => cart[p.id]).map(p => `${cart[p.id]} x ${p.name} (${money(p.price)})`).join('%0A');
-  const msg = `Hi Whisk & Bloom, I would like to place an order.%0A%0AItems:%0A${items}%0A%0ASubtotal: ${money(subtotal())}%0ADelivery: $5.00%0ATotal: ${money(subtotal()+deliveryFee)}%0A%0AName: ${data.get('name')}%0APhone: ${data.get('phone')}%0AAddress: ${data.get('address')}%0ADate: ${data.get('date')}%0ATime: ${data.get('time')}%0ARemarks: ${data.get('remarks') || '-'}%0A%0APayment: PayNow pending verification`;
+  const msg = `Hi Whisk & Bloom, I would like to place an order.%0A%0AItems:%0A${items}%0A%0ASubtotal: ${money(subtotal())}%0ADelivery: $5.00%0ATotal: ${money(subtotal()+deliveryFee)}%0A%0AName: ${data.get('name')}%0APhone: ${data.get('phone')}%0AAddress: ${data.get('address')}%0ADate: ${data.get('date')}%0ATime: ${data.get('time')}%0ARemarks: ${data.get('remarks') || '-'}%0A%0APayment: PayNow only, pending verification`;
   window.open(`https://wa.me/6588928698?text=${msg}`, '_blank');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('heroImage');
-  hero.src = './hero.jpg';
+  hero.src = './14_hero_oreo_cheesecake.jpg';
   renderProducts();
   renderCart();
   document.getElementById('clearCartDesktop').addEventListener('click', clearCart);
