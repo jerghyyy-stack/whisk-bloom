@@ -3,21 +3,19 @@ let activeProductId = null;
 let modalQty = 1;
 
 const products = [
-  { id: 'oreo-cheesecake', category: 'Cheesecakes', name: 'Oreo Cheesecake', price: 8.90, tag: 'Best Seller', desc: 'Cookies and cream cheesecake slice with Oreo crumble and a rich cookie base.', img: './01_oreo_cheesecake.jpg' },
-  { id: 'matcha-cheesecake', category: 'Cheesecakes', name: 'Matcha Cheesecake', price: 8.90, tag: 'Premium Matcha', desc: 'Smooth matcha cheesecake with a soft earthy finish and light biscuit base.', img: './02_matcha_cheesecake.jpg' },
-  { id: 'basque-cheesecake', category: 'Cheesecakes', name: 'Basque Cheesecake', price: 8.90, tag: 'Classic', desc: 'Creamy burnt Basque cheesecake with a caramelised top.', img: './03_basque_cheesecake.jpg' },
+  { id: 'burnt-cheesecake-milk', category: 'Signature Cheesecake Milk Series', name: 'Burnt Cheesecake Milk', price: 8.90, tag: 'Best Seller', desc: 'Creamy cheesecake milk with caramelised cheesecake crumbles.', img: './01_burnt_cheesecake_milk.jpg' },
+  { id: 'oreo-cheesecake-milk', category: 'Signature Cheesecake Milk Series', name: 'Oreo Cheesecake Milk', price: 8.90, tag: 'Signature', desc: 'Cheesecake milk blended with Oreo crumbs and cookie bits.', img: './02_oreo_cheesecake_milk.jpg' },
+  { id: 'matcha-cheesecake-milk', category: 'Signature Cheesecake Milk Series', name: 'Matcha Cheesecake Milk', price: 8.90, tag: 'Matcha', desc: 'Smooth matcha cheesecake milk with biscuit crumble.', img: './03_matcha_cheesecake_milk.jpg' },
+  { id: 'tiramisu-cheesecake-milk', category: 'Signature Cheesecake Milk Series', name: 'Tiramisu Cheesecake Milk', price: 9.20, tag: 'Coffee Cream', desc: 'Coffee-infused cheesecake milk with cocoa powder and ladyfinger crumbs.', img: './04_tiramisu_cheesecake_milk.jpg' },
+  { id: 'strawberry-cheesecake-milk', category: 'Signature Cheesecake Milk Series', name: 'Strawberry Cheesecake Milk', price: 8.90, tag: 'New', desc: 'Sweet strawberry cheesecake milk with real strawberry puree and biscuit crumble.', img: './05_strawberry_cheesecake_milk.jpg' },
 
-  { id: 'oreo-dessert-cup', category: 'Dessert Cups', name: 'Oreo Dessert Cup', price: 5.90, tag: 'Popular', desc: 'Layered Oreo cream dessert cup with cookie crumble.', img: './04_oreo_dessert_cup.jpg' },
-  { id: 'tiramisu-dessert-cup', category: 'Dessert Cups', name: 'Tiramisu Dessert Cup', price: 5.90, tag: 'Coffee Cream', desc: 'Creamy tiramisu-inspired dessert cup with cocoa and biscuit layers.', img: './05_tiramisu_dessert_cup.jpg' },
-  { id: 'mango-dessert-cup', category: 'Dessert Cups', name: 'Mango Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Bright mango dessert cup with creamy layers and mango topping.', img: './06_mango_dessert_cup.jpg' },
-  { id: 'strawberry-dessert-cup', category: 'Dessert Cups', name: 'Strawberry Dessert Cup', price: 5.90, tag: 'Fruity', desc: 'Strawberry dessert cup with soft cream and berry topping.', img: './07_strawberry_dessert_cup.jpg' },
+  { id: 'galaxy-lychee-sparkling', category: 'Magic Sparkling Series', name: 'Galaxy Lychee Sparkling', price: 7.90, tag: 'Shimmer', desc: 'Lychee, grape soda and edible shimmer. Swirl before drinking.', img: './06_galaxy_lychee_sparkling.jpg' },
+  { id: 'aurora-yuzu-soda', category: 'Magic Sparkling Series', name: 'Aurora Yuzu Soda', price: 7.90, tag: 'Yuzu', desc: 'Yuzu, lemon soda and edible shimmer. Bright, citrusy and refreshing.', img: './07_aurora_yuzu_soda.jpg' },
+  { id: 'pink-stardust-lemonade', category: 'Magic Sparkling Series', name: 'Pink Stardust Lemonade', price: 7.90, tag: 'Sparkling', desc: 'Strawberry, lemon soda and edible shimmer for a magical pink sparkle.', img: './08_pink_stardust_lemonade.jpg' },
+  { id: 'ocean-breeze-soda', category: 'Magic Sparkling Series', name: 'Ocean Breeze Soda', price: 7.90, tag: 'Sparkling', desc: 'Pear, lemon soda and edible shimmer with an ocean-blue finish.', img: './09_ocean_breeze_soda.jpg' },
 
-  { id: 'signature-jasmine-fruit-tea', category: 'Drinks', name: 'Signature Jasmine Fruit Tea', price: 5.50, tag: 'Signature', desc: 'Refreshing jasmine fruit tea with a bright tropical finish.', img: './08_signature_jasmine_fruit_tea.jpg' },
-  { id: 'strawberry-jasmine-tea', category: 'Drinks', name: 'Strawberry Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Strawberry jasmine tea with fruity sweetness and floral tea notes.', img: './09_strawberry_jasmine_tea.jpg' },
-  { id: 'peach-jasmine-tea', category: 'Drinks', name: 'Peach Jasmine Tea', price: 5.80, tag: 'Refreshing', desc: 'Peach jasmine tea with a light, sweet and refreshing profile.', img: './10_peach_jasmine_tea.jpg' },
-  { id: 'yuzu-jasmine-tea', category: 'Drinks', name: 'Yuzu Jasmine Tea', price: 5.80, tag: 'Citrus', desc: 'Yuzu jasmine tea with a clean citrus finish.', img: './11_yuzu_jasmine_tea.jpg' },
-  { id: 'matcha-latte', category: 'Drinks', name: 'Matcha Latte', price: 5.80, tag: 'Latte', desc: 'Smooth matcha latte with a creamy finish.', img: './12_matcha_latte.jpg' },
-  { id: 'strawberry-matcha-latte', category: 'Drinks', name: 'Strawberry Matcha Latte', price: 6.20, tag: 'Latte', desc: 'Layered strawberry matcha latte with a creamy fruit base.', img: './13_strawberry_matcha_latte.jpg' }
+  { id: 'sea-salt-cream-fruit-tea', category: 'Refreshing Series', name: 'Sea Salt Cream Fruit Tea', price: 7.90, tag: 'Fruit Tea', desc: 'Peach jasmine tea topped with our signature sea salt cream.', img: './10_sea_salt_cream_fruit_tea.jpg' },
+  { id: 'dessert-in-a-cup-oreo', category: 'Dessert Series', name: 'Dessert in a Cup (Oreo)', price: 9.20, tag: 'Dessert Drink', desc: 'Milk, chocolate, Oreo crumbs, whipped cream and chocolate drizzle.', img: './11_dessert_in_a_cup_oreo.jpg' }
 ];
 
 let cart = JSON.parse(localStorage.getItem('wb-cart') || '{}');
@@ -29,11 +27,11 @@ const getProduct = id => products.find(p => p.id === id);
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  const groups = ['Cheesecakes', 'Dessert Cups', 'Drinks'];
+  const groups = ['Signature Cheesecake Milk Series', 'Magic Sparkling Series', 'Refreshing Series', 'Dessert Series'];
   grid.innerHTML = groups.map(group => `
     <div class="menu-category">
       <h3>${group}</h3>
-      <div class="category-grid">
+      <div class="category-grid ${group.includes('Cheesecake') ? 'featured-grid' : ''}">
         ${products.filter(p => p.category === group).map(p => `
           <article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}">
             <div class="product-photo"><img src="${p.img}" alt="${p.name}" loading="lazy" /></div>
@@ -159,7 +157,7 @@ function submitOrder(e){
 
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.getElementById('heroImage');
-  hero.src = './14_hero_oreo_cheesecake.jpg';
+  hero.src = './hero_dessert_drinks.jpg';
   createProductModal();
   renderProducts();
   renderCart();
