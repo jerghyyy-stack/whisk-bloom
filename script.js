@@ -2,35 +2,41 @@ const deliveryFee = 5;
 let activeProductId = null;
 let modalQty = 1;
 
+const imagePath = file => `./images/${file}`;
+
 const products = [
-  { id: 'matcha-cream', category: 'Cream Top Series', name: 'Matcha Cream', price: 8.90, tag: 'Signature', desc: 'Earthy matcha layered with fresh milk and finished with AVENN house cream.', visual: 'matcha', top: 'matcha dust' },
-  { id: 'black-sesame-cream', category: 'Cream Top Series', name: 'Black Sesame Cream', price: 8.90, tag: 'Nutty', desc: 'Roasted black sesame milk with a smooth cream top and deep toasted finish.', visual: 'sesame', top: 'sesame' },
-  { id: 'strawberry-cream', category: 'Cream Top Series', name: 'Strawberry Cream', price: 8.50, tag: 'Soft & Fruity', desc: 'Strawberry milk layered with silky house cream for a light dessert-drink feel.', visual: 'strawberry', top: 'berry' },
+  { id: 'matcha-cream', category: 'Cream Top Series', name: 'Matcha Cream', price: 8.90, tag: 'Signature', desc: 'Earthy matcha layered with fresh milk and finished with AVENN house cream.', image: imagePath('matcha-cream.png') },
+  { id: 'strawberry-cream', category: 'Cream Top Series', name: 'Strawberry Cream', price: 8.50, tag: 'Soft & Fruity', desc: 'Strawberry milk layered with silky house cream for a light dessert-drink feel.', image: imagePath('strawberry-cream.png') },
+  { id: 'black-sesame-cream', category: 'Cream Top Series', name: 'Black Sesame Cream', price: 8.90, tag: 'Nutty', desc: 'Roasted black sesame milk with a smooth cream top and deep toasted finish.', image: imagePath('black-sesame-cream.png') },
 
-  { id: 'brulee-milk', category: 'Crème Brûlée Series', name: 'Crème Brûlée Milk', price: 8.90, tag: 'Caramel Custard', desc: 'Creamy milk with caramel custard notes, house cream and brûlée crumble.', visual: 'brulee', top: 'brûlée' },
-  { id: 'brulee-matcha', category: 'Crème Brûlée Series', name: 'Crème Brûlée Matcha', price: 9.50, tag: 'Premium', desc: 'Matcha milk finished with caramel cream and a brûlée-inspired crunch.', visual: 'brulee-matcha', top: 'brûlée' },
-  { id: 'brulee-chocolate', category: 'Crème Brûlée Series', name: 'Crème Brûlée Chocolate', price: 9.20, tag: 'Indulgent', desc: 'Chocolate milk with caramel cream, cocoa notes and crunchy brûlée topping.', visual: 'brulee-choc', top: 'brûlée' },
+  { id: 'creme-brulee-original', category: 'Crème Brûlée Series', name: 'Original Crème Brûlée Milk', price: 8.90, tag: 'Caramel Custard', desc: 'Creamy milk with caramel custard notes, house cream and brûlée crumble.', image: imagePath('creme-brulee-original.png') },
+  { id: 'creme-brulee-matcha', category: 'Crème Brûlée Series', name: 'Crème Brûlée Matcha', price: 9.50, tag: 'Premium', desc: 'Matcha milk finished with caramel cream and a brûlée-inspired crunch.', image: imagePath('creme-brulee-matcha.png') },
+  { id: 'creme-brulee-chocolate', category: 'Crème Brûlée Series', name: 'Crème Brûlée Chocolate', price: 9.20, tag: 'Indulgent', desc: 'Chocolate milk with caramel cream, cocoa notes and crunchy brûlée topping.', image: imagePath('creme-brulee-chocolate.png') },
 
-  { id: 'oreo-cream-milk', category: 'Cookie Series', name: 'Oreo Cream Milk', price: 8.90, tag: 'Best Seller', desc: 'Cookies-and-cream milk topped with house cream and generous Oreo crumble.', visual: 'oreo', top: 'oreo' },
-  { id: 'biscoff-cream-milk', category: 'Cookie Series', name: 'Biscoff Cream Milk', price: 9.20, tag: 'Cookie Butter', desc: 'Caramel biscuit milk with smooth cream and spiced cookie crumble.', visual: 'biscoff', top: 'biscoff' },
-  { id: 'chocolate-cookie-cream', category: 'Cookie Series', name: 'Chocolate Cookie Cream', price: 8.90, tag: 'Chocolate', desc: 'Chocolate cookie milk with cream top and crunchy cookie bits.', visual: 'choc-cookie', top: 'cookie' },
+  { id: 'oreo-cream-milk', category: 'Cookie Series', name: 'Oreo Cream Milk', price: 8.90, tag: 'Best Seller', desc: 'Cookies-and-cream milk topped with house cream and generous Oreo crumble.', image: imagePath('oreo-cream-milk.png') },
+  { id: 'biscoff-cream-milk', category: 'Cookie Series', name: 'Biscoff Cream Milk', price: 9.20, tag: 'Cookie Butter', desc: 'Caramel biscuit milk with smooth cream and spiced cookie crumble.', image: imagePath('biscoff-cream-milk.png') },
+  { id: 'chocolate-cookie-cream', category: 'Cookie Series', name: 'Chocolate Cookie Cream', price: 8.90, tag: 'Chocolate', desc: 'Chocolate cookie milk with cream top and crunchy cookie bits.', image: imagePath('chocolate-cookie-cream.png') },
 
-  { id: 'andes-mint-cream-milk', category: 'Mint Collection', name: 'Andes Mint Cream Milk', price: 9.80, tag: 'New', desc: 'Fresh milk with melted chocolate mint, house cream, crushed mint chocolate pieces, cocoa dust and a touch of chocolate sauce.', visual: 'mint-light', top: 'mint shards' },
-  { id: 'mint-chocolate-cookie-cream', category: 'Mint Collection', name: 'Mint Chocolate Cookie Cream', price: 9.80, tag: 'Cookie Mint', desc: 'A grown-up cookies-and-cream drink with Oreo crumble, chocolate mint pieces, thick cream and chocolate drizzle.', visual: 'mint-cookie', top: 'oreo mint' },
-  { id: 'midnight-mint', category: 'Mint Collection', name: 'Midnight Mint', price: 9.80, tag: 'Featured', desc: 'Rich chocolate mint milk layered with silky house cream, dark chocolate drizzle and chocolate mint shards.', visual: 'midnight-mint', top: 'mint leaf' },
+  { id: 'andes-mint-cream-milk', category: 'Mint Collection', name: 'Andes Mint Cream Milk', price: 9.80, tag: 'New', desc: 'Fresh milk with melted chocolate mint, house cream, crushed mint chocolate pieces, cocoa dust and a touch of chocolate sauce.', image: imagePath('andes-mint-cream-milk.png') },
+  { id: 'mint-chocolate-cookie-cream', category: 'Mint Collection', name: 'Mint Chocolate Cookie Cream', price: 9.80, tag: 'Cookie Mint', desc: 'A grown-up cookies-and-cream drink with Oreo crumble, chocolate mint pieces, thick cream and chocolate drizzle.', image: imagePath('mint-chocolate-cookie-cream.png') },
+  { id: 'midnight-mint', category: 'Mint Collection', name: 'Midnight Mint', price: 9.80, tag: 'Featured', desc: 'Rich chocolate mint milk layered with silky house cream, dark chocolate drizzle and chocolate mint shards.', image: imagePath('midnight-mint.png') },
 
-  { id: 'peach-cream-soda', category: 'Dessert Cream Soda', name: 'Peach Cream Soda', price: 8.50, tag: 'Refreshing', desc: 'White peach soda topped with light cream for a fizzy dessert-style drink.', visual: 'peach-soda', top: 'cream float' },
-  { id: 'yuzu-cream-soda', category: 'Dessert Cream Soda', name: 'Yuzu Cream Soda', price: 8.50, tag: 'Citrus', desc: 'Japanese yuzu soda softened with a smooth cream cap.', visual: 'yuzu-soda', top: 'cream float' },
-  { id: 'strawberry-cream-soda', category: 'Dessert Cream Soda', name: 'Strawberry Cream Soda', price: 8.50, tag: 'Bright', desc: 'Strawberry sparkling soda with cream for a pretty, delivery-friendly treat.', visual: 'strawberry-soda', top: 'cream float' },
+  { id: 'peach-cream-soda', category: 'Dessert Cream Soda', name: 'Peach Cream Soda', price: 8.50, tag: 'Refreshing', desc: 'White peach soda topped with light cream for a fizzy dessert-style drink.', image: imagePath('peach-cream-soda.png') },
+  { id: 'yuzu-cream-soda', category: 'Dessert Cream Soda', name: 'Yuzu Cream Soda', price: 8.50, tag: 'Citrus', desc: 'Japanese yuzu soda softened with a smooth cream cap.', image: imagePath('yuzu-cream-soda.png') },
+  { id: 'strawberry-cream-soda', category: 'Dessert Cream Soda', name: 'Strawberry Cream Soda', price: 8.50, tag: 'Bright', desc: 'Strawberry sparkling soda with cream for a pretty, delivery-friendly treat.', image: imagePath('strawberry-cream-soda.png') },
+  { id: 'mango-cream-soda', category: 'Dessert Cream Soda', name: 'Mango Cream Soda', price: 8.50, tag: 'Tropical', desc: 'Mango sparkling soda with creamy foam, mango cubes and a sunny tropical finish.', image: imagePath('mango-cream-soda.png') },
 
-  { id: 'white-peach-oolong', category: 'Premium Fruit Tea', name: 'White Peach Oolong', price: 7.50, tag: 'Tea', desc: 'Oolong tea with white peach notes. Add cream if you want it richer.', visual: 'peach-tea', top: 'fruit' },
-  { id: 'lychee-jasmine', category: 'Premium Fruit Tea', name: 'Lychee Jasmine', price: 7.50, tag: 'Floral', desc: 'Light jasmine tea with lychee sweetness and a clean finish.', visual: 'lychee-tea', top: 'lychee' },
-  { id: 'yuzu-jasmine', category: 'Premium Fruit Tea', name: 'Yuzu Jasmine', price: 7.50, tag: 'Citrus', desc: 'Jasmine tea with bright yuzu citrus, made for customers who prefer non-dairy drinks.', visual: 'yuzu-tea', top: 'citrus' },
+  { id: 'white-peach-oolong', category: 'Premium Fruit Tea', name: 'White Peach Oolong', price: 7.50, tag: 'Tea', desc: 'Oolong tea with white peach notes and a clean floral finish.', image: imagePath('white-peach-oolong.png') },
+  { id: 'lychee-jasmine', category: 'Premium Fruit Tea', name: 'Lychee Jasmine', price: 7.50, tag: 'Floral', desc: 'Light jasmine tea with lychee sweetness and a clean finish.', image: imagePath('lychee-jasmine.png') },
+  { id: 'mango-passion', category: 'Premium Fruit Tea', name: 'Mango Passion', price: 7.80, tag: 'Tropical', desc: 'Mango fruit tea lifted with passionfruit brightness and juicy tropical notes.', image: imagePath('mango-passion.png') },
+  { id: 'yuzu-jasmine', category: 'Premium Fruit Tea', name: 'Yuzu Jasmine', price: 7.50, tag: 'Citrus', desc: 'Jasmine tea with bright yuzu citrus, made for customers who prefer non-dairy drinks.', image: imagePath('yuzu-jasmine.png') },
 
-  { id: 'galaxy-lychee', category: 'Seasonal Magic Potion', name: 'Galaxy Lychee', price: 7.90, tag: 'Limited', desc: 'Lychee sparkling drink with edible shimmer. Swirl before drinking for the effect.', visual: 'galaxy', top: 'shimmer' },
-  { id: 'pink-stardust', category: 'Seasonal Magic Potion', name: 'Pink Stardust Lemonade', price: 7.90, tag: 'Sparkle', desc: 'Strawberry lemonade with edible shimmer for limited seasonal launches.', visual: 'pink-stardust', top: 'shimmer' },
+  { id: 'galaxy-lychee', category: 'Seasonal Magic Potion', name: 'Galaxy Lychee', price: 7.90, tag: 'Limited', desc: 'Lychee sparkling drink with edible shimmer. Swirl before drinking for the effect.', image: imagePath('galaxy-lychee.png') },
+  { id: 'pink-stardust', category: 'Seasonal Magic Potion', name: 'Pink Stardust', price: 7.90, tag: 'Sparkle', desc: 'Pink sparkling drink with lychee, peach notes and edible shimmer for seasonal launches.', image: imagePath('pink-stardust.png') },
 
-  { id: 'oreo-cheesecake', category: 'Desserts', name: 'Oreo Cheesecake', price: 7.90, tag: 'Dessert', desc: 'Creamy Oreo cheesecake slice with cookie crumble and a rich biscuit base.', visual: 'cheesecake', top: 'oreo' }
+  { id: 'oreo-cheesecake-slice', category: 'Desserts', name: 'Oreo Cheesecake Slice', price: 7.90, tag: 'Dessert', desc: 'Creamy Oreo cheesecake with cookie crumble and a rich chocolate cookie base.', image: imagePath('oreo-cheesecake.png') },
+  { id: 'strawberry-matcha-cheesecake-slice', category: 'Desserts', name: 'Strawberry Matcha Cheesecake Slice', price: 7.90, tag: 'Slice', desc: 'Creamy matcha cheesecake on a buttery biscuit base, topped with fresh strawberries.', image: imagePath('strawberry-matcha-cheesecake.png') },
+  { id: 'strawberry-matcha-cheesecake-whole', category: 'Desserts', name: 'Strawberry Matcha Cheesecake Whole Cake', price: 68.00, tag: 'Whole Cake', desc: 'Whole strawberry matcha cheesecake, perfect for gifting, gatherings and celebrations.', image: imagePath('strawberry-matcha-cheesecake.png') }
 ];
 
 let cart = JSON.parse(localStorage.getItem('avenn-cart') || '{}');
@@ -39,31 +45,21 @@ const money = n => `$${n.toFixed(2)}`;
 const count = () => Object.values(cart).reduce((a,b)=>a+b,0);
 const subtotal = () => products.reduce((sum,p)=>sum + (cart[p.id] || 0) * p.price, 0);
 const getProduct = id => products.find(p => p.id === id);
+const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Mint Collection', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
 
-function drinkVisual(product, size = ''){
-  return `
-    <div class="drink-scene ${size}">
-      <div class="drink-props"><span></span><span></span><span></span></div>
-      <div class="cup ${product.visual}">
-        <div class="cream-cap"><i></i><i></i><i></i></div>
-        <div class="topping">${product.top}</div>
-        <div class="logo">AVENN<small>Crafted by J & J</small></div>
-        <div class="ice ice-one"></div><div class="ice ice-two"></div><div class="ice ice-three"></div>
-        <div class="drizzle drizzle-one"></div><div class="drizzle drizzle-two"></div>
-      </div>
-    </div>`;
+function imageTag(product){
+  return `<img src="${product.image}" alt="${product.name}" loading="lazy" onerror="this.closest('.product-photo, .modal-image-wrap').classList.add('missing-image'); this.style.display='none';" />`;
 }
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Mint Collection', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
   grid.innerHTML = groups.map(group => `
     <div class="menu-category">
       <div class="category-title"><h3>${group}</h3><span>${products.filter(p => p.category === group).length} items</span></div>
       <div class="category-grid">
         ${products.filter(p => p.category === group).map(p => `
           <article class="product-card" data-product="${p.id}" tabindex="0" role="button" aria-label="View ${p.name}">
-            <div class="product-photo">${drinkVisual(p)}</div>
+            <div class="product-photo">${imageTag(p)}<span class="missing-label">Upload ${p.image.replace('./images/', '')}</span></div>
             <div class="product-body">
               <span class="tag">${p.tag}</span>
               <h3>${p.name}</h3>
@@ -158,7 +154,7 @@ function openProduct(id){
   if(!product) return;
   activeProductId = id;
   modalQty = 1;
-  document.getElementById('modalProductVisual').innerHTML = drinkVisual(product, 'large');
+  document.getElementById('modalProductVisual').innerHTML = `${imageTag(product)}<span class="missing-label">Upload ${product.image.replace('./images/', '')}</span>`;
   document.getElementById('modalProductTag').textContent = product.tag;
   document.getElementById('modalProductName').textContent = product.name;
   document.getElementById('modalProductPrice').textContent = money(product.price);
@@ -184,11 +180,6 @@ function submitOrder(e){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const hero = document.getElementById('heroImage');
-  if(hero){
-    const heroProduct = getProduct('midnight-mint') || products[0];
-    hero.replaceWith(Object.assign(document.createElement('div'), { id: 'heroImage', className: 'hero-main hero-visual', innerHTML: drinkVisual(heroProduct, 'large') }));
-  }
   createProductModal();
   renderProducts();
   renderCart();
