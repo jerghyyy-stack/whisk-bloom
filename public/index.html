@@ -17,9 +17,8 @@
       <span class="brand-sub">CRAFTED BY J &amp; J</span>
     </a>
     <nav>
-      <a href="#collections">Collections</a>
       <a href="#menu">Menu</a>
-      <a href="#how">Delivery</a>
+      <a href="#delivery">Delivery</a>
       <a href="#checkout">Checkout</a>
     </nav>
     <button class="cart-pill" id="openCartMobile">Cart <span id="cartCount">0</span></button>
@@ -29,10 +28,10 @@
     <section class="hero section-pad">
       <div class="hero-copy">
         <p class="eyebrow">Crafted by J & J</p>
-        <h1>Layered cream drinks, made for little escapes.</h1>
-        <p class="hero-text">AVENN is a delivery-first dessert drink concept built around silky house cream, comforting flavours, cheesecakes and photo-ready layers.</p>
+        <h1>Layered cream drinks, cheesecakes & little escapes.</h1>
+        <p class="hero-text">Delivery-first handcrafted drinks and desserts made with silky cream, bright fruit flavours and photo-ready layers.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#menu">Explore menu</a>
+          <a class="btn primary" href="#menu">Order from menu</a>
           <a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a>
         </div>
         <div class="notes">
@@ -42,42 +41,36 @@
         </div>
       </div>
       <div class="hero-card hero-gallery">
-        <img id="heroImage" class="hero-main" src="./products/strawberry-matcha-cheesecake.png" alt="AVENN Strawberry Matcha Cheesecake" />
+        <img class="hero-main" src="./products/strawberry-matcha-cheesecake.png" alt="AVENN Strawberry Matcha Cheesecake" />
         <div class="hero-side">
           <img src="./products/oreo-cream-milk.png" alt="Oreo Cream Milk" />
           <img src="./products/peach-cream-soda.png" alt="Peach Cream Soda" />
         </div>
-        <div class="hero-badge">Crafted cream<br><strong>delivery-first</strong></div>
+        <div class="hero-badge">Crafted fresh<br><strong>delivery-first</strong></div>
       </div>
     </section>
 
-    <section id="collections" class="section-pad collections-wrap">
-      <div class="section-head centered">
-        <p class="eyebrow">The AVENN menu</p>
-        <h2>Eight collections, one premium feel.</h2>
-        <p>The menu is designed to stay simple behind the scenes: one excellent house cream, layered across indulgent drinks, mint chocolate, refreshing sodas, fruit teas and cheesecakes.</p>
-      </div>
-      <div class="collection-grid">
-        <article><span>01</span><strong>Cream Top</strong><p>Matcha, strawberry and sesame drinks finished with house cream.</p></article>
-        <article><span>02</span><strong>Crème Brûlée</strong><p>Caramel custard-inspired drinks with a rich brûlée finish.</p></article>
-        <article><span>03</span><strong>Cookie</strong><p>Oreo, Biscoff and chocolate cookie drinks for repeat cravings.</p></article>
-        <article><span>04</span><strong>Mint Collection</strong><p>Chocolate mint cream drinks with mint chocolate shards and cookie crunch.</p></article>
-        <article><span>05</span><strong>Cream Soda</strong><p>Bright fruit sodas softened with a smooth cream cap.</p></article>
-        <article><span>06</span><strong>Fruit Tea</strong><p>Light jasmine and oolong teas with real fruit notes.</p></article>
-        <article><span>07</span><strong>Magic Potion</strong><p>Limited-edition sparkle drinks for launches and festive drops.</p></article>
-        <article><span>08</span><strong>Desserts</strong><p>Oreo cheesecake and strawberry matcha cheesecake, available by slice or whole cake.</p></article>
-      </div>
+    <section class="menu-shortcuts" aria-label="Menu collection shortcuts">
+      <a href="#cream-top-series">Cream Top</a>
+      <a href="#creme-brulee-series">Crème Brûlée</a>
+      <a href="#cookie-series">Cookie</a>
+      <a href="#mint-collection">Mint</a>
+      <a href="#dessert-cream-soda">Cream Soda</a>
+      <a href="#premium-fruit-tea">Fruit Tea</a>
+      <a href="#seasonal-magic-potion">Magic Potion</a>
+      <a href="#desserts">Desserts</a>
     </section>
 
     <section id="menu" class="section-pad menu-layout">
       <div class="content-column">
-        <div class="section-head">
+        <div class="section-head compact-head">
           <p class="eyebrow">Order menu</p>
           <h2>Crafted cream drinks & desserts</h2>
-          <p>Start with the signature cream drinks, then add something refreshing or a cheesecake slice. Prices are working launch prices and can be adjusted before going live.</p>
+          <p>Tap a collection shortcut above to jump directly to what you want.</p>
         </div>
         <div class="product-grid" id="productGrid"></div>
       </div>
+
       <aside class="cart desktop-cart" aria-label="Shopping cart">
         <div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="clearCartDesktop">Clear</button></div>
         <div id="cartItemsDesktop" class="cart-items empty">Your cart is empty.</div>
@@ -86,15 +79,10 @@
       </aside>
     </section>
 
-    <section id="how" class="section-pad info-strip">
+    <section id="delivery" class="section-pad info-strip">
       <article><strong>Delivery only</strong><span>No self-pickup at the moment. Orders are prepared for scheduled delivery.</span></article>
       <article><strong>Small-batch prep</strong><span>Cream, tea bases and toppings are prepared in controlled batches for consistency.</span></article>
       <article><strong>PayNow only</strong><span>Submit your order via WhatsApp, then make payment after confirmation.</span></article>
-    </section>
-
-    <section class="section-pad story-wrap">
-      <div><p class="eyebrow">Our story</p><h2>AVENN means a small haven for sweet moments.</h2></div>
-      <p>Crafted by J & J, AVENN was created around the idea of a simple treat that feels a little more special — smooth cream, layered flavours and desserts that arrive looking as good as they taste.</p>
     </section>
 
     <section id="checkout" class="section-pad checkout-wrap">
