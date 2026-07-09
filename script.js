@@ -15,6 +15,10 @@ const products = [
   { id: 'biscoff-cream-milk', category: 'Cookie Series', name: 'Biscoff Cream Milk', price: 9.20, tag: 'Cookie Butter', desc: 'Caramel biscuit milk with smooth cream and spiced cookie crumble.', img: './06_mango_dessert_cup.jpg' },
   { id: 'chocolate-cookie-cream', category: 'Cookie Series', name: 'Chocolate Cookie Cream', price: 8.90, tag: 'Chocolate', desc: 'Chocolate cookie milk with cream top and crunchy cookie bits.', img: './07_strawberry_dessert_cup.jpg' },
 
+  { id: 'andes-mint-cream-milk', category: 'Mint Collection', name: 'Andes Mint Cream Milk', price: 9.80, tag: 'New', desc: 'Fresh milk with melted chocolate mint, house cream, crushed mint chocolate pieces, cocoa dust and a touch of chocolate sauce.', img: './05_tiramisu_dessert_cup.jpg' },
+  { id: 'mint-chocolate-cookie-cream', category: 'Mint Collection', name: 'Mint Chocolate Cookie Cream', price: 9.80, tag: 'Cookie Mint', desc: 'A grown-up cookies-and-cream drink with Oreo crumble, chocolate mint pieces, thick cream and chocolate drizzle.', img: './04_oreo_dessert_cup.jpg' },
+  { id: 'midnight-mint', category: 'Mint Collection', name: 'Midnight Mint', price: 9.80, tag: 'Featured', desc: 'Rich chocolate mint milk layered with silky house cream, dark chocolate drizzle and chocolate mint shards.', img: './12_matcha_latte.jpg' },
+
   { id: 'peach-cream-soda', category: 'Dessert Cream Soda', name: 'Peach Cream Soda', price: 8.50, tag: 'Refreshing', desc: 'White peach soda topped with light cream for a fizzy dessert-style drink.', img: './10_peach_jasmine_tea.jpg' },
   { id: 'yuzu-cream-soda', category: 'Dessert Cream Soda', name: 'Yuzu Cream Soda', price: 8.50, tag: 'Citrus', desc: 'Japanese yuzu soda softened with a smooth cream cap.', img: './11_yuzu_jasmine_tea.jpg' },
   { id: 'strawberry-cream-soda', category: 'Dessert Cream Soda', name: 'Strawberry Cream Soda', price: 8.50, tag: 'Bright', desc: 'Strawberry sparkling soda with cream for a pretty, delivery-friendly treat.', img: './09_strawberry_jasmine_tea.jpg' },
@@ -38,7 +42,7 @@ const getProduct = id => products.find(p => p.id === id);
 
 function renderProducts(){
   const grid = document.getElementById('productGrid');
-  const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
+  const groups = ['Cream Top Series', 'Crème Brûlée Series', 'Cookie Series', 'Mint Collection', 'Dessert Cream Soda', 'Premium Fruit Tea', 'Seasonal Magic Potion', 'Desserts'];
   grid.innerHTML = groups.map(group => `
     <div class="menu-category">
       <div class="category-title"><h3>${group}</h3><span>${products.filter(p => p.category === group).length} items</span></div>
