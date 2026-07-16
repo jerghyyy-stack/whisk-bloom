@@ -4,105 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AVENN • Crafted by J & J</title>
-  <meta
-    name="description"
-    content="Premium cream drinks, cheesecakes and handcrafted desserts by AVENN."
-  >
+  <meta name="description" content="Premium cream drinks, cheesecakes and handcrafted desserts by AVENN.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="hero.css" />
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#home" aria-label="AVENN home">
-      <span class="brand-main">AVENN</span>
-      <span class="brand-sub">CRAFTED BY J &amp; J</span>
-    </a>
-    <nav>
-      <a href="#menu">Menu</a>
-      <a href="#delivery">Delivery</a>
-      <a href="#checkout">Checkout</a>
-    </nav>
+    <a class="brand" href="#home" aria-label="AVENN home"><span class="brand-main">AVENN</span><span class="brand-sub">CRAFTED BY J &amp; J</span></a>
+    <nav><a href="#menu">Menu</a><a href="#delivery">Delivery</a><a href="#checkout">Checkout</a></nav>
     <button class="cart-pill" id="openCartMobile">Cart <span id="cartCount">0</span></button>
   </header>
 
   <main id="home">
-    <section class="hero hero-redesign section-pad">
+    <section class="hero hero-integrated section-pad" id="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Crafted by J & J</p>
-        <div class="hero-ornament" aria-hidden="true"><span></span><i>✦</i><span></span></div>
-        <h1>
-          <span>Layered</span>
-          <span><em>cream</em> drinks,</span>
-          <span>cheesecakes <em>&amp;</em></span>
-          <span>little <em>escapes.</em></span>
-        </h1>
-        <div class="hero-divider" aria-hidden="true"></div>
-        <p class="hero-text">Delivery-first handcrafted drinks and desserts made with silky cream, bright fruit flavours and photo-ready layers.</p>
-        <a class="hero-menu-btn" href="#menu">Explore the menu <span>→</span></a>
+        <p class="eyebrow hero-eyebrow">Crafted by J &amp; J</p>
+        <h1>Layered <span class="hero-accent">cream</span> drinks, cheesecakes &amp; little <span class="hero-accent">escapes.</span></h1>
+        <span class="hero-rule" aria-hidden="true"></span>
+        <p class="hero-text">Premium cream drinks and handcrafted desserts, made fresh in small batches and delivered to your door.</p>
+        <div class="hero-actions"><a class="btn hero-primary" href="#menu">Explore the menu <span aria-hidden="true">→</span></a><a class="btn ghost" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp us</a></div>
       </div>
 
-      <div class="hero-single-product">
-        <img src="./products/hojicha-cream.png" alt="AVENN Hojicha Cream" />
+      <div class="hero-stage" aria-live="polite">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-decoration hero-decoration-top" aria-hidden="true"></div>
+        <div class="hero-decoration hero-decoration-bottom" aria-hidden="true"></div>
+        <img id="heroCup" class="hero-cup" src="./products/hero-oreo-cream-milk.png" alt="AVENN Oreo Cream Milk" />
+        <div class="hero-product-copy"><span>Now serving</span><strong id="heroProductName">Oreo Cream Milk</strong></div>
+        <div class="hero-dots" id="heroDots" aria-label="Choose a featured drink"></div>
       </div>
     </section>
 
-    <section class="menu-shortcuts" aria-label="Menu collection shortcuts">
-      <a href="#signature-cream-collection">Signature Cream</a>
-      <a href="#creme-brulee-collection">Crème Brûlée</a>
-      <a href="#cookie-collection">Cookie</a>
-      <a href="#mint-collection">Mint</a>
-      <a href="#cream-soda-collection">Cream Soda</a>
-      <a href="#premium-tea-collection">Premium Tea</a>
-      <a href="#seasonal-lab">Seasonal Lab</a>
-      <a href="#cheesecake-collection">Cheesecakes</a>
-    </section>
+    <section class="menu-shortcuts" aria-label="Menu collection shortcuts"><a href="#signature-cream-collection">Signature Cream</a><a href="#creme-brulee-collection">Crème Brûlée</a><a href="#cookie-collection">Cookie</a><a href="#mint-collection">Mint</a><a href="#cream-soda-collection">Cream Soda</a><a href="#premium-tea-collection">Premium Tea</a><a href="#seasonal-lab">Seasonal Lab</a><a href="#cheesecake-collection">Cheesecakes</a></section>
 
     <section id="menu" class="section-pad menu-layout">
-      <div class="content-column">
-        <div class="section-head compact-head">
-          <p class="eyebrow">Order menu</p>
-          <h2>Crafted cream drinks & desserts</h2>
-          <p>Tap a collection shortcut above to jump directly to what you want.</p>
-        </div>
-        <div class="product-grid" id="productGrid"></div>
-      </div>
-
-      <aside class="cart desktop-cart" aria-label="Shopping cart">
-        <div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="clearCartDesktop">Clear</button></div>
-        <div id="cartItemsDesktop" class="cart-items empty">Your cart is empty.</div>
-        <div class="totals"><div><span>Subtotal</span><strong id="subtotalDesktop">$0.00</strong></div><div><span>Delivery</span><strong>$5.00</strong></div><div class="grand"><span>Total</span><strong id="totalDesktop">$0.00</strong></div></div>
-        <a class="btn primary full" href="#checkout">Checkout</a>
-      </aside>
+      <div class="content-column"><div class="section-head compact-head"><p class="eyebrow">Order menu</p><h2>Crafted cream drinks &amp; desserts</h2><p>Tap a collection shortcut above to jump directly to what you want.</p></div><div class="product-grid" id="productGrid"></div></div>
+      <aside class="cart desktop-cart" aria-label="Shopping cart"><div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="clearCartDesktop">Clear</button></div><div id="cartItemsDesktop" class="cart-items empty">Your cart is empty.</div><div class="totals"><div><span>Subtotal</span><strong id="subtotalDesktop">$0.00</strong></div><div><span>Delivery</span><strong>$5.00</strong></div><div class="grand"><span>Total</span><strong id="totalDesktop">$0.00</strong></div></div><a class="btn primary full" href="#checkout">Checkout</a></aside>
     </section>
 
-    <section id="delivery" class="section-pad info-strip">
-      <article><strong>Delivery only</strong><span>No self-pickup at the moment. Orders are prepared for scheduled delivery.</span></article>
-      <article><strong>Small-batch prep</strong><span>Cream, tea bases and toppings are prepared in controlled batches for consistency.</span></article>
-      <article><strong>PayNow only</strong><span>Submit your order via WhatsApp, then make payment after confirmation.</span></article>
-    </section>
+    <section id="delivery" class="section-pad info-strip"><article><strong>Delivery only</strong><span>No self-pickup at the moment. Orders are prepared for scheduled delivery.</span></article><article><strong>Small-batch prep</strong><span>Cream, tea bases and toppings are prepared in controlled batches for consistency.</span></article><article><strong>PayNow only</strong><span>Submit your order via WhatsApp, then make payment after confirmation.</span></article></section>
 
-    <section id="checkout" class="section-pad checkout-wrap">
-      <div class="checkout-card">
-        <p class="eyebrow">Checkout</p><h2>Delivery details</h2>
-        <form id="orderForm" class="checkout-form">
-          <label>Name<input required name="name" placeholder="Your name" /></label>
-          <label>Mobile number<input required name="phone" placeholder="e.g. 91234567" /></label>
-          <label>Delivery address<textarea required name="address" rows="3" placeholder="Block, street, unit number"></textarea></label>
-          <div class="two-col"><label>Preferred date<input required name="date" type="date" /></label><label>Preferred time<select name="time"><option>12pm – 2pm</option><option>2pm – 4pm</option><option>4pm – 6pm</option><option>6pm – 8pm</option></select></label></div>
-          <label>Remarks<textarea name="remarks" rows="2" placeholder="Optional notes, allergies or sweetness preference"></textarea></label>
-          <button class="btn primary full" type="submit">Place order via WhatsApp</button>
-          <p class="fineprint">Payment by PayNow only for now. Please transfer after submitting your order; we will verify and confirm by WhatsApp.</p>
-        </form>
-      </div>
-      <div class="payment-card"><p class="eyebrow">Payment</p><h3>PayNow only</h3><div class="qr-box">PayNow QR<br/><small>hidden for now</small></div><p>After submitting your order, please make payment by PayNow. We will verify and confirm by WhatsApp.</p></div>
-    </section>
+    <section id="checkout" class="section-pad checkout-wrap"><div class="checkout-card"><p class="eyebrow">Checkout</p><h2>Delivery details</h2><form id="orderForm" class="checkout-form"><label>Name<input required name="name" placeholder="Your name" /></label><label>Mobile number<input required name="phone" placeholder="e.g. 91234567" /></label><label>Delivery address<textarea required name="address" rows="3" placeholder="Block, street, unit number"></textarea></label><div class="two-col"><label>Preferred date<input required name="date" type="date" /></label><label>Preferred time<select name="time"><option>12pm – 2pm</option><option>2pm – 4pm</option><option>4pm – 6pm</option><option>6pm – 8pm</option></select></label></div><label>Remarks<textarea name="remarks" rows="2" placeholder="Optional notes, allergies or sweetness preference"></textarea></label><button class="btn primary full" type="submit">Place order via WhatsApp</button><p class="fineprint">Payment by PayNow only for now. Please transfer after submitting your order; we will verify and confirm by WhatsApp.</p></form></div><div class="payment-card"><p class="eyebrow">Payment</p><h3>PayNow only</h3><div class="qr-box">PayNow QR<br/><small>hidden for now</small></div><p>After submitting your order, please make payment by PayNow. We will verify and confirm by WhatsApp.</p></div></section>
   </main>
 
   <div class="mobile-cart" id="mobileCart"><div class="mobile-cart-panel"><div class="cart-head"><div><p class="eyebrow">Your order</p><h3>Cart</h3></div><button class="clear" id="closeCartMobile">Close</button></div><div id="cartItemsMobile" class="cart-items empty">Your cart is empty.</div><div class="totals"><div><span>Subtotal</span><strong id="subtotalMobile">$0.00</strong></div><div><span>Delivery</span><strong>$5.00</strong></div><div class="grand"><span>Total</span><strong id="totalMobile">$0.00</strong></div></div><a class="btn primary full" href="#checkout" id="checkoutMobile">Checkout</a></div></div>
   <a class="whatsapp" href="https://wa.me/6588928698" target="_blank" rel="noreferrer">WhatsApp</a>
-  <script src="script.js"></script>
+  <script src="script.js"></script><script src="hero.js"></script>
 </body>
 </html>
