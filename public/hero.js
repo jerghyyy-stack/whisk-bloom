@@ -1,71 +1,78 @@
 const heroProducts = [
-  { name: 'Hojicha Cream', main: './products/hojicha-cream.png', sideA: './products/matcha-cream.png', sideB: './products/strawberry-cream.png' },
-  { name: 'Strawberry Matcha Cheesecake', main: './products/strawberry-matcha-cheesecake.png', sideA: './products/oreo-cheesecake.png', sideB: './products/oreo-cream-milk.png' },
-  { name: 'Midnight Mint', main: './products/midnight-mint.png', sideA: './products/andes-mint-cream-milk.png', sideB: './products/mint-chocolate-cookie-cream.png' },
-  { name: 'Peach Cream Soda', main: './products/peach-cream-soda.png', sideA: './products/yuzu-cream-soda.png', sideB: './products/mango-cream-soda.png' },
-  { name: 'Galaxy Lychee', main: './products/galaxy-lychee.png', sideA: './products/pink-stardust.png', sideB: './products/lychee-jasmine.png' }
+  { name: 'Oreo Cream Milk', image: './products/hero-oreo-cream-milk.png', accent: '#a98248' },
+  { name: 'Andes Mint Cream Milk', image: './products/hero-andes-mint-cream-milk.png', accent: '#78917a' },
+  { name: 'Matcha Cream', image: './products/hero-matcha-cream.png', accent: '#82955d' },
+  { name: 'Strawberry Cream Soda', image: './products/hero-strawberry-cream-soda.png', accent: '#cf8f91' }
 ];
 
 function setupHeroRotation(){
-  const main = document.getElementById('heroMainImage');
-  const sideA = document.getElementById('heroSideImageA');
-  const sideB = document.getElementById('heroSideImageB');
+  const cup = document.getElementById('heroCup');
   const label = document.getElementById('heroProductName');
   const dots = document.getElementById('heroDots');
-  const gallery = document.querySelector('.hero-gallery');
-  if(!main || !sideA || !sideB || !label || !dots || !gallery) return;
+  const hero = document.getElementById('hero');
+  const stage = document.querySelector('.hero-stage');
+  if(!cup || !label || !dots || !hero || !stage) return;
 
   let index = 0;
   let timer;
-  let paused = false;
+  let changing = false;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  dots.innerHTML = heroProducts.map((_, i) => `<button class="hero-dot${i === 0 ? ' active' : ''}" aria-label="Show featured product ${i + 1}" data-hero-index="${i}"></button>`).join('');
+  heroProducts.forEach(item => { const img = new Image(); img.src = item.image; });
+  dots.innerHTML = heroProducts.map((item,i) => `<button class="hero-dot${i === 0 ? ' active' : ''}" type="button" data-hero-index="${i}" aria-label="Show ${item.name}"></button>`).join('');
 
-  const preload = src => { const image = new Image(); image.src = src; };
-  heroProducts.forEach(item => [item.main, item.sideA, item.sideB].forEach(preload));
+  function setAccent(item){
+    hero.style.setProperty('--hero-accent-live', item.accent);
+    document.querySelectorAll('.hero-dot').forEach((dot,i) => dot.classList.toggle('active',i === index));
+  }
 
-  function update(nextIndex){
+  function show(nextIndex){
+    if(changing) return;
+    changing = true;
     index = (nextIndex + heroProducts.length) % heroProducts.length;
     const item = heroProducts[index];
-    [main, sideA, sideB].forEach(img => img.classList.add('hero-fading'));
 
-    window.setTimeout(() => {
-      main.src = item.main;
-      main.alt = `AVENN ${item.name}`;
-      sideA.src = item.sideA;
-      sideB.src = item.sideB;
+    if(reducedMotion){
+      cup.src = item.image;
+      cup.alt = `AVENN ${item.name}`;
       label.textContent = item.name;
-      document.querySelectorAll('.hero-dot').forEach((dot, i) => dot.classList.toggle('active', i === index));
-      [main, sideA, sideB].forEach(img => img.classList.remove('hero-fading'));
-    }, 260);
+      setAccent(item);
+      changing = false;
+      return;
+    }
+
+    cup.classList.add('slide-out');
+    window.setTimeout(() => {
+      cup.classList.remove('slide-out');
+      cup.classList.add('slide-in-start');
+      cup.src = item.image;
+      cup.alt = `AVENN ${item.name}`;
+      label.textContent = item.name;
+      setAccent(item);
+      requestAnimationFrame(() => requestAnimationFrame(() => cup.classList.remove('slide-in-start')));
+      window.setTimeout(() => { changing = false; }, 760);
+    }, 430);
   }
 
   function restart(){
     window.clearInterval(timer);
-    if(!paused && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-      timer = window.setInterval(() => update(index + 1), 4600);
-    }
+    if(!reducedMotion) timer = window.setInterval(() => show(index + 1), 4300);
   }
 
   dots.addEventListener('click', event => {
     const button = event.target.closest('[data-hero-index]');
     if(!button) return;
-    update(Number(button.dataset.heroIndex));
+    show(Number(button.dataset.heroIndex));
     restart();
   });
 
-  gallery.addEventListener('mouseenter', () => { paused = true; window.clearInterval(timer); });
-  gallery.addEventListener('mouseleave', () => { paused = false; restart(); });
-  gallery.addEventListener('focusin', () => { paused = true; window.clearInterval(timer); });
-  gallery.addEventListener('focusout', () => { paused = false; restart(); });
+  stage.addEventListener('mouseenter', () => window.clearInterval(timer));
+  stage.addEventListener('mouseleave', restart);
+  stage.addEventListener('focusin', () => window.clearInterval(timer));
+  stage.addEventListener('focusout', restart);
+  cup.addEventListener('error', () => show(index + 1));
 
-  [main, sideA, sideB].forEach(img => {
-    img.addEventListener('error', () => {
-      if(img === main) update(index + 1);
-    });
-  });
-
-  update(0);
+  setAccent(heroProducts[0]);
   restart();
 }
 
