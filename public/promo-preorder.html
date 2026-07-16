@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AVENN Pre-Order Promotion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:#e9e2d6;font-family:Manrope,Arial,sans-serif;color:#2a241d;display:grid;place-items:center;min-height:100vh;padding:24px}
+    .poster{position:relative;width:min(1080px,100%);aspect-ratio:4/5;overflow:hidden;background:linear-gradient(145deg,#f8f2e8 0%,#f5eadb 62%,#eadcc7 100%);box-shadow:0 28px 80px rgba(48,37,23,.18);isolation:isolate}
+    .poster:before{content:"";position:absolute;inset:-18% 54% 60% -18%;border-radius:50%;background:rgba(255,255,255,.76);filter:blur(10px);z-index:-1}.poster:after{content:"";position:absolute;right:-120px;bottom:-120px;width:520px;height:520px;border-radius:50%;background:rgba(133,151,109,.12);z-index:-1}
+    .top{padding:50px 58px 0;display:flex;justify-content:space-between;align-items:flex-start}.brand{letter-spacing:.24em;font:600 46px/1 Cormorant Garamond,serif}.sub{font-size:13px;letter-spacing:.22em;text-transform:uppercase;margin-top:7px;color:#675d50}.badge{background:#3e4a2f;color:#fff;padding:12px 18px;border-radius:999px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+    .content{display:grid;grid-template-columns:1.04fr .96fr;gap:20px;padding:24px 50px 0}.copy{padding:20px 8px 0}.eyebrow{font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:#8c6542;margin:0 0 12px}.copy h1{font:600 77px/.91 Cormorant Garamond,serif;margin:0;letter-spacing:-.03em}.copy h1 em{font-weight:500;color:#52613e}.lead{font-size:18px;line-height:1.55;color:#5f5548;max-width:440px;margin:22px 0 26px}
+    .deal-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px}.deal{border:1px solid rgba(55,48,39,.18);border-radius:22px;padding:20px;background:rgba(255,255,255,.58);backdrop-filter:blur(4px)}.deal.pre{background:#435032;color:white}.deal small{display:block;font-size:12px;letter-spacing:.13em;text-transform:uppercase;margin-bottom:8px}.percent{font:600 60px/1 Cormorant Garamond,serif}.deal p{margin:7px 0 0;font-size:13px;line-height:1.4}.save{margin:17px 0 0;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px;color:#8a572e}
+    .visual{position:relative;min-height:690px}.drink{position:absolute;filter:drop-shadow(0 24px 23px rgba(48,34,19,.22));object-fit:contain}.matcha{width:54%;right:2%;top:5%;transform:rotate(2deg)}.strawberry{width:50%;left:2%;top:23%;transform:rotate(-3deg)}.oreo{width:44%;right:4%;bottom:4%;transform:rotate(2deg)}.sesame{width:42%;left:8%;bottom:0%;transform:rotate(-2deg)}
+    .footer{position:absolute;left:0;right:0;bottom:0;background:#2f3727;color:white;padding:20px 54px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.footer strong{font-size:18px;letter-spacing:.04em}.footer span{font-size:13px;opacity:.85}.order{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:14px;border:1px solid rgba(255,255,255,.48);padding:13px 18px;border-radius:999px}
+    @media(max-width:760px){body{padding:0}.poster{width:100vw;min-height:100vh;aspect-ratio:auto}.top{padding:28px 24px 0}.brand{font-size:36px}.content{grid-template-columns:1fr;padding:12px 24px 100px}.copy h1{font-size:60px}.visual{min-height:520px}.footer{padding:16px 24px}.badge{display:none}}
+  </style>
+</head>
+<body>
+  <main class="poster" aria-label="AVENN pre-order promotion brochure">
+    <header class="top">
+      <div><div class="brand">AVENN</div><div class="sub">Crafted by J &amp; J</div></div>
+      <div class="badge">Grand opening</div>
+    </header>
+    <section class="content">
+      <div class="copy">
+        <p class="eyebrow">Save more when you plan ahead</p>
+        <h1>Pre-order.<br><em>Enjoy double</em><br>the discount.</h1>
+        <p class="lead">Freshly made layered cream drinks, prepared in small batches and delivered to your door.</p>
+        <div class="deal-wrap">
+          <article class="deal pre"><small>Pre-order special</small><div class="percent">20% OFF</div><p>Order before launch day.</p></article>
+          <article class="deal"><small>Same-day orders</small><div class="percent">10% OFF</div><p>Opening-day orders only.</p></article>
+        </div>
+        <p class="save">Limited daily production · Pre-order slots close once full</p>
+      </div>
+      <div class="visual">
+        <img class="drink matcha" src="./products/matcha-cream.png" alt="AVENN Matcha Cream">
+        <img class="drink strawberry" src="./products/strawberry-cream.png" alt="AVENN Strawberry Cream">
+        <img class="drink oreo" src="./products/oreo-cream-milk.png" alt="AVENN Oreo Cream Milk">
+        <img class="drink sesame" src="./products/black-sesame-cream.png" alt="AVENN Black Sesame Cream">
+      </div>
+    </section>
+    <footer class="footer">
+      <div><strong>Delivery across Singapore</strong><br><span>Order via WhatsApp · av enn.vercel.app</span></div>
+      <div class="order">Pre-order now</div>
+    </footer>
+  </main>
+</body>
+</html>
